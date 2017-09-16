@@ -65,6 +65,7 @@ conn.sync({ force: true })
 // middleware
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static('public')); // serve up the static files in /public
 app.use(morgan('dev'));
 
 // routes
@@ -115,10 +116,12 @@ app.delete('/api/products/:id', (req, res, next) => {
     .catch(next);
 });
 
+// error handling
 app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err);
 });
 
+// server!
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`acme-products-react listening on ${port}...`);
