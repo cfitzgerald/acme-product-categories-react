@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 export default class ProductForm extends Component {
+
   render() {
     return (
       <div className="col-sm-3">
@@ -10,20 +11,20 @@ export default class ProductForm extends Component {
             <form>
               <div className="form-group">
                 <label>Name</label>
-                <input name="name" className="form-control" value="testValue"></input>
+                <input name="name" className="form-control" value=""></input>
               </div>
             </form>
             <form>
               <div className="form-group">
                 <label>Price</label>
-                <input type="number" name="price" className="form-control" value="testValue"></input>
+                <input type="number" name="price" className="form-control" value=""></input>
               </div>
             </form>
             <form>
               <div className="form-group">
                 <label>In Stock</label>
                 <br></br>
-                <input type="checkbox" name="inStock" value="on"></input>
+                <input type="checkbox" name="inStock" value=""></input>
               </div>
             </form>
             <form>
