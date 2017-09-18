@@ -2,10 +2,27 @@ import React, { Component } from 'react';
 
 export default class ProductList extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+
+    };
+    this.onSave = this.onSave.bind(this);
+    this.onDelete = this.onDelete.bind(this);
+  }
+
+  onSave(e) {
+
+  }
+
+  onDelete(e) {
+
+  }
+
   render() {
     // destructure from this.props
     const { products, categories } = this.props;
-    // to add: handlers...
+    const { onSave, onDelete } = this;
 
     return (
       <div className="col-sm-6">
@@ -17,30 +34,29 @@ export default class ProductList extends Component {
                 <div key={ product.id } className="col-sm-4">
                   <div className="panel panel-default">
                     <div className="panel-body">
-                      <form>
+
+                      <form onSubmit={ onSave }>
+
                         <div className="form-group">
                           <label>Name</label>
-                          <input name="name" className="form-control" value={ product.name }></input>
+                          <input name="name" className="form-control" value={ product.name } />
                         </div>
-                      </form>
-                      <form>
+
                         <div className="form-group">
                           <label>Price</label>
-                          <input type="number" name="price" className="form-control" value={ product.price }></input>
+                          <input type="number" name="price" className="form-control" value={ product.price } />
                         </div>
-                      </form>
-                      <form>
+
                         <div className="form-group">
                           <label>In Stock</label>
-                          <br></br>
-                          <input type="checkbox" name="inStock" value={ product.inStock }></input>
+                          <br />
+                          <input type="checkbox" name="inStock" value={ product.inStock } />
                         </div>
-                      </form>
-                      <form>
+
                         <div className="form-group">
                           <label>Category</label>
                           <select name="categoryId" className="form-control">
-                            <option value>-- none --</option>
+                            <option value="">-- none --</option>
                             {
                               categories.map(category => {
                                 return (
@@ -50,13 +66,14 @@ export default class ProductList extends Component {
                             }
                           </select>
                         </div>
-                      </form>
-                      <form>
+
                         <div className="form-group">
                           <button className="btn btn-primary btn-block">Save</button>
                           <button className="btn btn-danger btn-block">Delete</button>
                         </div>
+
                       </form>
+
                     </div>
                   </div>
                 </div>

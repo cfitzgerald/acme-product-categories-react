@@ -49,12 +49,13 @@ conn.sync({ force: true })
   .then( () => {
     return Promise.all([
       Product.create({ name: 'Plumbus', price: 100 }),
-      Product.create({ name: 'The Best Product', price: 99 }),
+      Product.create({ name: 'The Best Product', price: 99, inStock: false }),
       Product.create({ name: 'The Worst Product', price: 1 }),
+      Product.create({ name: 'Tauntaun Sleeping Bag', price: 50 }),
       Category.create({ name: 'Beyond' }),
       Category.create({ name: 'Normal'}),
     ])
-    .then(([ plumbus, best, worst, beyondCategory, normalCategory ]) => {
+    .then(([ plumbus, best, worst, tauntaun, beyondCategory, normalCategory ]) => {
       return Promise.all([
         beyondCategory.addProducts([ plumbus ]),
         normalCategory.addProducts([ best, worst ]),

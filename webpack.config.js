@@ -5,13 +5,13 @@ module.exports = {
 
   // The entry field tells webpack where our application starts.
   // Webpack will start building this file and any subsequent file(s) that are imported by that file
-  entry: './browser/react/App.js',
+  entry: './browser/react/index.js',
 
   // The output field specifies where webpack's output will go. In this case, we've specified
   // that it should put it into a file called bundle.js in our public directory
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './dist/bundle.js'
   },
 
   // The context field simply sets the context for relative pathnames
