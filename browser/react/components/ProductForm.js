@@ -10,30 +10,31 @@ export default class ProductForm extends Component {
       stockVal: false,
       categoryVal: '',
     };
-    this.onChangeName = this.onChangeName.bind(this);
-    this.onChangePrice = this.onChangePrice.bind(this);
-    this.onChangeStock = this.onChangeStock.bind(this);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-    this.onSave = this.onSave.bind(this);
+
+    this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangePrice = this.handleChangePrice.bind(this);
+    this.handleChangeStock = this.handleChangeStock.bind(this);
+    this.handleChangeCategory = this.handleChangeCategory.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
-  onChangeName(e) {
+  handleChangeName(e) {
     this.setState({ nameVal: e.target.value });
   }
 
-  onChangePrice(e) {
+  handleChangePrice(e) {
     this.setState({ priceVal: e.target.value });
   }
 
-  onChangeStock(e) {
+  handleChangeStock(e) {
     this.setState({ stockVal: e.target.checked });
   }
 
-  onChangeCategory(e) {
+  handleChangeCategory(e) {
     this.setState({ categoryVal: e.target.value });
   }
 
-  onSave(e) {
+  handleSave(e) {
     e.preventDefault();
     // create a new product object with form name/values
     const newProduct = {
@@ -42,8 +43,9 @@ export default class ProductForm extends Component {
       inStock: e.target.inStock.checked,
       categoryId: e.target.categoryId.value
     };
-    // console.log('newProduct = ', newProduct);
+    console.log('newProduct = ', newProduct);
 
+    // invoke createProduct passed from App.js as a prop
     this.props.createProduct(newProduct)
       .then(result => {
         // reset/clear form data
@@ -64,7 +66,7 @@ export default class ProductForm extends Component {
   render() {
     // console.log('ProductForm render()!');
     const { nameVal, priceVal, stockVal, categoryVal } = this.state;
-    const { onChangeName, onChangePrice, onChangeStock, onChangeCategory, onSave } = this;
+    const { handleChangeName, handleChangePrice, handleChangeStock, handleChangeCategory, handleSave } = this;
     const { categories } = this.props;
 
     return (
@@ -73,14 +75,14 @@ export default class ProductForm extends Component {
           <div className="panel-heading">Add a Product</div>
           <div className="panel-body">
 
-            <form onSubmit={ onSave }>
+            <form onSubmit={ handleSave }>
 
               <div className="form-group">
                 <label>Name</label>
                 <input
                   name="name"
                   className="form-control"
-                  onChange={ onChangeName }
+                  onChange={ handleChangeName }
                   value={ nameVal }
                 />
               </div>
@@ -91,7 +93,7 @@ export default class ProductForm extends Component {
                   type="number"
                   name="price"
                   className="form-control"
-                  onChange={ onChangePrice }
+                  onChange={ handleChangePrice }
                   value={ priceVal }
                 />
               </div>
@@ -102,7 +104,7 @@ export default class ProductForm extends Component {
                 <input
                   type="checkbox"
                   name="inStock"
-                  onChange={ onChangeStock }
+                  onChange={ handleChangeStock }
                   checked={ stockVal }
                 />
               </div>
@@ -112,8 +114,9 @@ export default class ProductForm extends Component {
                 <select
                   name="categoryId"
                   className="form-control"
-                  onChange={ onChangeCategory }
-                  value={ categoryVal} >
+                  onChange={ handleChangeCategory }
+                  value={ categoryVal }
+                >
                   <option value="">-- none --</option>
                   {
                     categories.map(category => {
